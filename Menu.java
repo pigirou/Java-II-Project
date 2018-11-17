@@ -11,7 +11,7 @@ public class Menu {
 			switch(ch) {
 			case 1:
 				System.out.println("Add data");
-				System.out.println("Ôype new data: ");
+				System.out.println("Type new data: ");
 				String nd= input.nextLine();
 				/*kalw methodo add dinw orisma nd data*/
 				break;
@@ -29,14 +29,14 @@ public class Menu {
 				String vd= input.nextLine();
 				if (vd == "yes" ){
 					/*deixnw ola ta data*/
-				} else System.out.println("which data do you want to see?:");
+				} else System.out.println("Which data do you want to see?:");
 				String vd2 = input.nextLine();
 				/*kalw methodo view dinw orisma vd2 data */
 				break;
 
 			case 4:
 				System.out.println("Data processing");
-				System.out.println("Ôype data for processing: ");
+				System.out.println("Type data for processing: ");
 				String pd= input.nextLine();
 				/*kalw methodo epexergasias dinw orisma pd data*/
 				break;
