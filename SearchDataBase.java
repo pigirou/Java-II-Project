@@ -5,7 +5,7 @@ public class SearchDataBase {
 
 	Scanner input = new Scanner(System.in);
 
-	//searchFields den trexei swsta den briskei to primary key bgazei exception!!!!!!
+	
 	//find a field by entering primary key
 	public int searchFieldName(LinkedList<LinkedList<String>> listOfLists) {
 
