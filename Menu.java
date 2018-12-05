@@ -20,7 +20,7 @@ public class Menu {
 				System.out.println("Remove data");
 				System.out.println("Which data is for remove?:");
 				String rd= input.nextLine();
-				/*kalw methodo remove dinw orisma rd data*/
+				/*klisi  methodou remove dinw orisma rd data*/
 				break;
 
 			case 3:
@@ -31,7 +31,7 @@ public class Menu {
 					/*deixnw ola ta data*/
 				} else System.out.println("Which data do you want to see?:");
 				String vd2 = input.nextLine();
-				/*kalw methodo view dinw orisma vd2 data */
+				/*klisimethodo view dinw orisma vd2 data */
 				break;
 
 			case 4:
