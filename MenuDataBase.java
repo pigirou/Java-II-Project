@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Menu {
+public class MenuDataBase {
 	Scanner input = new Scanner(System.in);
 	public  void menu(String s) {
 		int ch;
