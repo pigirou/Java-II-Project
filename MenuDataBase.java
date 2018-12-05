@@ -1,44 +1,48 @@
+
 import java.util.Scanner;
+import java.util.LinkedList;
 
 public class MenuDataBase {
-	Scanner input = new Scanner(System.in);
-	public  void menu(String s) {
-		int ch;
-		System.out.println("Welcome");
+
+	public void menu(LinkedList<LinkedList<String>> list, int numOfFields) {
+		Scanner input = new Scanner(System.in);
+		int ch = 0;
+		// creating objects for classes AddDataBase etc.
+		AddDataBase add = new AddDataBase(0);
+		RemoveDataBase remove = new RemoveDataBase();
+		EditDataBase edit = new EditDataBase();
+		ViewDataBase view = new ViewDataBase();
+
 		do {
-			System.out.println("*Menu* \n 1)Add data \n 2)Remove data \n 3)View data \n 4)Data processing \n 5)Exit \n Please make a choice please:");
+			System.out.println(
+					"*Menu* \n 1)Add data \n 2)Remove data \n 3)View data \n 4)Data processing \n 5)Exit \n Make a choice please:");
 			ch = input.nextInt();
-			switch(ch) {
+
+			switch (ch) {
 			case 1:
-				System.out.println("Add data");
-				System.out.println("Type new data: ");
-				String nd= input.nextLine();
-				/*kalw methodo add dinw orisma nd data*/
+				add.addData(list, numOfFields);
 				break;
 
 			case 2:
-				System.out.println("Remove data");
-				System.out.println("Which data is for remove?:");
-				String rd= input.nextLine();
-				/*klisi  methodou remove dinw orisma rd data*/
+				remove.removeData(list, numOfFields);
 				break;
 
 			case 3:
-				System.out.println("View data");
-				System.out.println("Which element do you want to process?: ");
-				String vd= input.nextLine();
-				if (vd == "yes" ){
-					/*deixnw ola ta data*/
-				} else System.out.println("Which data do you want to see?:");
-				String vd2 = input.nextLine();
-				/*klisimethodo view dinw orisma vd2 data */
+				int choice = view.printMenu();
+				switch (choice) {
+				case 1:
+					view.viewAllData(list);
+					break;
+				case 2:
+					// view.viewDataLine(list);
+					break;
+				case 3:
+					view.viewSpecificData(list);
+				}
 				break;
 
 			case 4:
-				System.out.println("Data processing");
-				System.out.println("Type data for processing: ");
-				String pd= input.nextLine();
-				/*kalw methodo epexergasias dinw orisma pd data*/
+				edit.editElement(list);
 				break;
 
 			case 5:
@@ -46,7 +50,6 @@ public class MenuDataBase {
 				break;
 			}
 
-		} while(ch >= 1 && ch <5 );
+		} while (ch >= 1 && ch < 5);
 	}
 }
-
