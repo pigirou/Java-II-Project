@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.*;
 public class ViewDataBase extends TestListOfLists3 {
 	Scanner input=new Scanner(System.in);
 	public void printMenu() {
@@ -7,22 +8,32 @@ public class ViewDataBase extends TestListOfLists3 {
 			+ "3) If you want to print a specific element of the DataBase\n");
 	}
 	int choice=input.nextInt();
-	
-	public void viewAllData(LinkedList listOfLists) {
-		System.out.println(listOfLists);
+
+	public void viewAllData(LinkedList<LinkedList<String>> listOfLists) {
+		int a=0;
+		for(int i=0;i==listOfLists.size();i++){
+		for(int j=0;j==listOfLists.get(i).size();j++){
+		System.out.println(listOfLists.get(i).get(j));
+		System.out.printf("/n");
+		a++;
+		}
+		for (int k=0;k==a;k++){
+			System.out.println("");
+		}
+			System.out.printf("\t");
+			}
 	}
-	
 	public void viewDataLine(LinkedList<LinkedList<String>> listOfLists ) {
 		String b="";
 		System.out.print("Who's Data do you want to view?");
-		String index=input.next();
-			//int y=searchSpecificData(listOfLists,index); searchSpecificData notready index-->Epilogh Xrhsth
+		String primary_key=input.next();
+		int y=searchSpecificData(listOfLists,primary_key);
 			for(int i=0;i<=listOfLists.size();i++) {
-				b=listOfLists.get(y).get(i);
+				b=listOfLists.get(i).get(y);
 				System.out.printf(b);
 			}
 	}
-	
+
 	public void viewSpecificData (LinkedList<LinkedList<String>> listOfLists,String index) {
 		String datachoice;
 		String personchoice;
@@ -32,19 +43,18 @@ public class ViewDataBase extends TestListOfLists3 {
 		System.out.print("Who's Data?");
 		personchoice=input.next();
 		//searchFields(listOfLists,...)
-		
+
 	}
-	
-	/*public int searchSpecificData(LinkedList<LinkedList<String>> listOfLists,String index) {
+
+	public int searchSpecificData(LinkedList<LinkedList<String>> listOfLists,String index) {
 	int y; //to index einai h epilogh tou xrhsth
 	for ( y=0;y<=listOfLists.size();y++)
-		if (listOfLists.get(y).get(0).equals(index))
-		{				
-			break;			
+		if (listOfLists.get(0).get(y).equals(index))
+		{
+			break;
 		} else {
 			return 0;
 		}
-		return y; 
+		return y;
 	}
-*/
 }
