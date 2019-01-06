@@ -21,23 +21,26 @@ public class RemoveDataBase {
 
 		do {
 			counter++;
-			System.out.println("Whose data do you want to remove? ");
-			field0=input.next();
-			
-			
-			//fieldLine= the line of the person I want to remove from the DataBase
+			System.out.printf("Which primary key's data do you want to remove? ", list.get(0).get(0));
+			System.out.println("Options are: ");
+			for (int i = 1; i < list.get(0).size(); i++) {
+				System.out.printf("%s \n", list.get(0).get(i));
+			}
+			System.out.println("Now enter your choice: ");
+
+			field0 = input.next();
+
+			// fieldLine= the line of the person I want to remove from the DataBase
 			int fieldLine = list.get(0).indexOf(field0);
-		
-			
-			for(int i=0; i<numOfFields; i++) 
+
+			for (int i = 0; i < numOfFields; i++)
 				list.get(i).remove(fieldLine);
-			
-			
+
 			System.out.println("Do you want to stop removing data? Available options yes/no: ");
 			stop = input.next();
 
 		} while (stop.equals("no"));
-
+		System.out.print(list); // is not used in the final programme
 		return list;
 	}
 }
