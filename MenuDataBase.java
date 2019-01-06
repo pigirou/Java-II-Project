@@ -3,7 +3,9 @@ import java.util.Scanner;
 import java.util.LinkedList;
 
 public class MenuDataBase {
-
+	public void l() {
+		System.out.println("Hello World");
+	}
 	public void menu(LinkedList<LinkedList<String>> list, int numOfFields) {
 		Scanner input = new Scanner(System.in);
 		int ch = 0;
@@ -52,4 +54,5 @@ public class MenuDataBase {
 
 		} while (ch >= 1 && ch < 5);
 	}
+	
 }
