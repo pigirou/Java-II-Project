@@ -7,28 +7,28 @@ public class DataBaseTest {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome!");
-		System.out.println("How many fields do you want to add to your DataBase?");
-		Scanner input = new Scanner(System.in);
-		int fields = input.nextInt();
-
+		TestGraphics2 t=new TestGraphics2();
+		t.frame();
+		
 		// making a list of lists as our DataBase
-		LinkedList<LinkedList<String>> listOfLists = new LinkedList<LinkedList<String>>();
-		for (int y = 0; y < fields; y++) {
-			LinkedList<String> singleList = new LinkedList<String>();
-			listOfLists.add(singleList);
+		LinkedList<LinkedList<String>> listOfLists1 = new LinkedList<LinkedList<String>>();
+		Scanner input = new Scanner(System.in);
+
+		CreatingDataBase creation = new CreatingDataBase();
+		creation.create(listOfLists1);
+		
+
+		System.out.println("Do you want to make a second entity to your DataBase? (yes/no)");
+		String choice = input.next();
+
+		if (choice.equals("yes")) {
+			LinkedList<LinkedList<String>> listOfLists2 = new LinkedList<LinkedList<String>>();
+			creation.create(listOfLists2);
+
+		} else {
+			System.out.println("All done. Bye!");
 		}
-
-		// giving names to fields
-		AddDataBase addBase = new AddDataBase();
-		addBase.addFieldNames(listOfLists, fields);
-
-		// adding initial data
-		addBase.addData(listOfLists, fields);
-		System.out.println(listOfLists);
-
-		// calling the menu
-		MenuDataBase menu1 = new MenuDataBase();
-		menu1.menu(listOfLists, fields);
+		
 
 	}
 
