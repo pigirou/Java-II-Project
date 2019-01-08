@@ -1,10 +1,10 @@
-package Javatoi;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class RemoveDataBase {
 
-	// used for processing- removes an element in order to add a new one
+	// used for EditDataBase2k
 	public LinkedList<LinkedList<String>> removeSpecificData(int index1, int index2,
 			LinkedList<LinkedList<String>> listOfLists) {
 		listOfLists.get(index1).remove(index2);
@@ -14,7 +14,7 @@ public class RemoveDataBase {
 	public LinkedList<LinkedList<String>> removeData(LinkedList<LinkedList<String>> list, int numOfFields) {
 		System.out.println("Removing data");
 		Scanner input = new Scanner(System.in);
-		String field0;
+		String pk;
 
 		String stop = "yes";
 		int counter = 0;
@@ -27,20 +27,25 @@ public class RemoveDataBase {
 				System.out.printf("%s \n", list.get(0).get(i));
 			}
 			System.out.println("Now enter your choice: ");
-
-			field0 = input.next();
-
-			// fieldLine= the line of the person I want to remove from the DataBase
-			int fieldLine = list.get(0).indexOf(field0);
-
-			for (int i = 0; i < numOfFields; i++)
-				list.get(i).remove(fieldLine);
+			try {
+				pk = input.next();
+				int fieldLine;
+				fieldLine = list.get(0).indexOf(pk);
+				for (int f = 0; f < numOfFields; f++)
+					list.get(f).remove(fieldLine);
+			} catch (IndexOutOfBoundsException e) {
+				System.out.println("IndexOutOfBoundsException");
+			}
 
 			System.out.println("Do you want to stop removing data? Available options yes/no: ");
 			stop = input.next();
+			while (!stop.equals("yes") && !stop.equals("no")) {
+				System.out.println("Wrong input. Give a yes/no!");
+				stop = input.next();
+			}
 
 		} while (stop.equals("no"));
-		System.out.print(list); // is not used in the final programme
+
 		return list;
 	}
 }

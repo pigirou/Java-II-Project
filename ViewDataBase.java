@@ -1,6 +1,6 @@
-package Javatoi;
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.LinkedList;
 
 public class ViewDataBase {
 	Scanner input = new Scanner(System.in);
@@ -10,7 +10,12 @@ public class ViewDataBase {
 		System.out.printf("Press 1) If you want to print the whole DataBase, \n"
 				+ "2) If you want to print the characteristics of a specific primary key and  \n"
 				+ "3) If you want to print a specific element of the DataBase\n Enter your choice: \n");
+
 		int choice = input.nextInt();
+		while (choice < 1 || choice > 3) {
+			System.out.println("There's no such choice. Please try again.");
+			choice = input.nextInt();
+		}
 		Choices(choice, listOfLists);
 	}
 
@@ -25,12 +30,13 @@ public class ViewDataBase {
 				System.out.printf("%s \n", listOfLists.get(0).get(i));
 			}
 			System.out.println("Enter one of the choices above: ");
-
-			String primary_key = input.next();
-			int indexOfPK = search.searchForPrimaryKey(listOfLists, primary_key); // searching for the primary key in
-																					// the
-																					// first column
-			viewDataLine(listOfLists, indexOfPK);
+			try {
+				String primary_key = input.next();
+				int indexOfPK = search.searchForPrimaryKey(listOfLists, primary_key);
+				viewDataLine(listOfLists, indexOfPK);
+			} catch (IndexOutOfBoundsException e) {
+				System.out.println("IndexOutOfBoundsException");
+			}
 			break;
 		case 3:
 			viewSpecificData(listOfLists);
@@ -43,8 +49,8 @@ public class ViewDataBase {
 
 	public void viewAllData(LinkedList<LinkedList<String>> listOfLists) {
 
-		for (int l = 0; l < listOfLists.get(0).size(); l++) { // the size of each line
-			System.out.printf("%s ", l + 1); // prints line number to be more practical for the database
+		for (int l = 0; l < listOfLists.get(0).size(); l++) {
+			System.out.printf("%s ", l + 1);
 			viewDataLine(listOfLists, l);
 			System.out.println();
 		}
@@ -53,10 +59,9 @@ public class ViewDataBase {
 
 	public void viewDataLine(LinkedList<LinkedList<String>> listOfLists, int line) {
 
-		for (int f = 0; f < listOfLists.size(); f++) { // < not <=
-			// f=field for each field
+		for (int field = 0; field < listOfLists.size(); field++) {
 
-			System.out.printf("%15s ", listOfLists.get(f).get(line));
+			System.out.printf("%15s ", listOfLists.get(field).get(line));
 
 		}
 	}
@@ -66,22 +71,31 @@ public class ViewDataBase {
 		String pkChoice;
 		System.out.print("In which field is the element you want to view? Options are: \n");
 		for (int f = 0; f < listOfLists.size(); f++)
-			System.out.printf("%s \n", listOfLists.get(f).get(0)); // prints fields, gives options to the user
+			// prints fields, gives options to the user
+			System.out.printf("%s \n", listOfLists.get(f).get(0));
 
 		System.out.println("Enter one of the choices above: \n");
+
 		fieldChoice = input.next();
 		int indexOfField = search.searchFieldName(listOfLists, fieldChoice);
-		System.out.print("Give me the primary key that the element describes. Options are: \n");
+		if (indexOfField != -1) {
+			System.out.print("Give me the primary key that the element describes. Options are: \n");
 
-		for (int l = 1; l < listOfLists.get(0).size(); l++)
-			System.out.printf("%s \n", listOfLists.get(0).get(l)); // gives primary key options to help the user
-		System.out.println("Enter one of the choices above: \n");
+			for (int l = 1; l < listOfLists.get(0).size(); l++)
+				// gives primary key options to help the user
+				System.out.printf("%s \n", listOfLists.get(0).get(l));
+			System.out.println("Enter one of the choices above: \n");
 
-		pkChoice = input.next();
+			try {
+				pkChoice = input.next();
 
-		int pkIndex = listOfLists.get(0).indexOf(pkChoice);
+				int pkIndex = listOfLists.get(0).indexOf(pkChoice);
 
-		System.out.println(listOfLists.get(indexOfField).get(pkIndex));
+				System.out.println(listOfLists.get(indexOfField).get(pkIndex));
+			} catch (IndexOutOfBoundsException e) {
+				System.out.println("IndexOutOfBoundsException");
+			}
+		} else
+			System.out.println("Index not in the list");
 	}
-
 }

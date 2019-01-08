@@ -1,4 +1,3 @@
-package Javatoi;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -20,7 +19,6 @@ public class CreatingDataBase {
 
 		// adding initial data
 		addBase.addData(listOfLists, fields);
-		System.out.println(listOfLists);
 
 		// calling the menu
 		MenuDataBase menu1 = new MenuDataBase();
